@@ -22,7 +22,6 @@ Designed for:
 # Demo
 
 ## Hardware Setup
-<img width="1024" height="1536" alt="WhatsApp Image 2026-05-17 at 12 06 59" src="https://github.com/user-attachments/assets/2116d944-a3fe-4433-ad62-34cc2c8a7873" />
 <img width="1600" height="900" alt="WhatsApp Image 2026-05-17 at 12 13 02" src="https://github.com/user-attachments/assets/e9f9e0fb-6657-44ec-ba0b-7365c148344e" />
 
 ## OLED Interface
