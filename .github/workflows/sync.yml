@@ -2,22 +2,27 @@ name: Sync Fork
 
 on:
   schedule:
-    # Runs every 48 hours (at 00:00 every 2 days)
     - cron: '0 0 */2 * *'
-  workflow_dispatch: # Allows you to trigger the sync manually whenever you want
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout target repo
+      - name: Checkout fork
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
 
-      - name: Sync upstream changes
+      - name: Merge upstream changes
         run: |
-          # Fetch the latest branches from the original repository
-          gh repo sync ${{ github.repository }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@://github.com"
+          git remote add upstream https://github.com
+          git fetch upstream main
+          git merge upstream/main --no-edit
+          git push origin main
+
